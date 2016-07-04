@@ -1,0 +1,27 @@
+in country.html {{ vm.stuff }}
+<div ui-grid="{ data: vm.countriesData }" class="myGrid"></div>
+
+<table class="countries">
+    <thead>
+    <tr>
+        <th>Country</th>
+        <th>Code</th>
+        <th>Capital</th>
+        <th>Area in Km2</th>
+        <th>Population</th>
+        <th>Continent</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="country in vm.countries" ng-click="vm.setSelectedCountry( country.countryCode );">
+            <td>{{ country.countryName }}</td>
+            <td>{{ country.countryCode }}</td>
+            <td>{{ country.capital }}</td>
+            <td>{{ country.areaInSqKm | number:0 }}</td>
+            <td>{{ country.population | number:0 }}</td>
+            <td>{{ country.continent }}</td>
+
+        </tr>
+    </tbody>
+</table>

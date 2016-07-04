@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Waitstaff Calculator</title>
+
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="bower_components/angular-ui-grid/ui-grid.min.css">
+
+
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1 class="text-center">Countries & Capitals</h1>
+
+        <ul class="list-inline text-center">
+            <li><a ng-href="#/">Home</a></li>
+            <li><a ng-href="#/countries">New Meal</a></li>
+            <li><a ng-href="#/my-earnings">My Earnings</a></li>
+        </ul>
+
+        <div class="animate-view-container">
+            <div ng-view class="animate-view"></div>
+        </div>
+
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="bower_components/angular-cache/dist/angular-cache.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="routes.js"></script>
+    <script src="geonames.js"></script>
+    <script src="countries/countries.js"></script>
+    <script src="countries/country.js"></script>
+
+
+
+</body>
+
+</html>

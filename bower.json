@@ -1,0 +1,28 @@
+{
+  "name": "waitstaff",
+  "homepage": "https://github.com/amcnaughton/waitstaff",
+  "authors": [
+    "amcnaughton <allanmcnaughton@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-messages": "^1.5.7",
+    "angular": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-cache": "^4.6.0"
+  },
+  "resolutions": {
+    "angular": ">=1.2.16 1.4.x"
+  }
+}
