@@ -1,3 +1,8 @@
 country.html
 <pre>{{ vm.country }}</pre>
 <pre>{{ vm.neighbors }}</pre>
+
+{{ vm.country.capital }}
+
+<img ng-src="http://www.geonames.org/flags/x/{{ vm.country.countryCode | lowercase }}.gif" />
+<img ng-src="http://www.geonames.org/img/country/250/{{ vm.country.countryCode | uppercase }}.png" />

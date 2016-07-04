@@ -3,7 +3,7 @@
 
     angular
         .module('app')
-        .factory('geonames', ['$http', '$q', 'CacheFactory', function ($http, $q, CacheFactory) {
+        .factory('geonames', ['$http', 'CacheFactory', function ($http, CacheFactory) {
 
             var factory = {};
             var baseUrl = "http://api.geonames.org/";
@@ -20,14 +20,11 @@
 
                 //now check the country cache
                 countryData = getCountry(country);
-                console.log("getC", countryData)
-                if (countryData && countryData.length) {
-
+                if (countryData) {
+                    console.log("CACHE HIT", countryData);
                     // return the cached data as a resolve promise
-                    return new Promise(function (resolve) {
-                        resolve({
-                            data: countryData
-                        });
+                    return Promise.resolve({
+                        data: countryData
                     });
                 }
 
@@ -42,7 +39,7 @@
                             countryData = {
                                 data: putCountry(res.data.geonames)
                             };
-                            console.log("countryInfo", countryData);
+                            console.log("LOADED", countryData);
 
                             return countryData;
                         },
@@ -55,8 +52,12 @@
                 function getCountry(countryCode) {
 
                     if (!countryCode) {
+
                         var keys = countryCache.keys();
                         var countries = [];
+
+                        if (!keys.length)
+                            return null;
 
                         for (var i = 0; i < countries.length; i++)
                             countries.push(countryCache.get(countries[i]));
@@ -64,6 +65,7 @@
                         return countries;
                     } else
                         return countryCache.get(countryCode);
+
                 }
 
                 // add one or more countries to the cache
@@ -72,12 +74,16 @@
                     for (var i = 0; i < data.length; i++)
                         countryCache.put(data[i].countryCode, data[i]);
 
-                    return data;
+                    if(data.length === 1)
+                        return data[0];
+                    else
+                     return data;
                 }
 
             }
 
 
+            // lookup the neighbors of a country
             function neighbors(countryCode) {
 
                 var url = baseUrl + "neighboursJSON?username=" + userName + "&country=" + countryCode;
@@ -86,7 +92,6 @@
                 return $http.get(url)
                     .then(function (res) {
                             // success
-                            console.log("neighbors", res);
                             neighborsData = {
                                 data: res.data.geonames
                             };
