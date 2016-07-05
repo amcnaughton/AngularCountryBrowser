@@ -1,8 +1,67 @@
-country.html
-<pre>{{ vm.country }}</pre>
+<pre>{{ vm.country | json }}</pre>
 <pre>{{ vm.neighbors }}</pre>
 
-{{ vm.country.capital }}
 
-<img ng-src="http://www.geonames.org/flags/x/{{ vm.country.countryCode | lowercase }}.gif" />
-<img ng-src="http://www.geonames.org/img/country/250/{{ vm.country.countryCode | uppercase }}.png" />
+
+<div class="row row-centered">
+    <div class="col-xs-12 col-sm-4 col-centered">
+
+
+        <div class="form-horizontal">
+
+            <h2>{{ vm.country.countryName }}</h2>
+
+            <div class="form-group form-text-only">
+                <label class="col-xs-4 control-label" for="population">Population</label>
+                <div class="col-xs-8">
+                    <div class="input-group">
+                        <span id="population">{{ vm.country.population | number:0 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-text-only">
+                <label class="col-xs-4 control-label" for="continentName">Continent</label>
+                <div class="col-xs-8">
+                    <div class="input-group">
+                        <span id="continentName">{{ vm.country.continentName }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-text-only">
+                <label class="col-xs-4 control-label" for="capital">Capital</label>
+                <div class="col-xs-8">
+                    <div class="input-group">
+                        <span id="capital">{{ vm.country.capital }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-text-only">
+                <label class="col-xs-4 control-label" for="neighbors">Neighbors</label>
+                <div class="col-xs-8">
+                    <div class="input-group">
+                        <ul id="neighbors" class="list-inline">
+                            <li ng-repeat="neighbor in vm.neighbors | limitTo: 3">
+                                <a ng-href="#/countries/{{ neighbor.countryCode }}">{{ neighbor.countryName }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center">
+            <img class="flag" ng-src="http://www.geonames.org/flags/x/{{ vm.country.countryCode | lowercase }}.gif"/>
+            <img class="map" ng-src="http://www.geonames.org/img/country/250/{{ vm.country.countryCode | uppercase }}.png"/>
+        </div>
+
+        <div class="country-buttons text-center">
+            <a class="btn btn-primary" ng-href="#/">Home</a>
+            <a class="btn btn-default" ng-href="#/countries">Browse Countries</a>
+        </div>
+    </div>
+</div>
+

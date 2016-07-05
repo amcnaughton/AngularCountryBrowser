@@ -3,8 +3,25 @@
     height:600px;
 }
 
+.form-text-only label {
+    padding-top: 0 !important;
+}
+
+
 .countries {
     cursor: pointer;
+}
+
+.flag, .map {
+    width: 200px;
+}
+
+.flag {
+    margin-right: 15px;
+}
+
+.country-buttons {
+    margin-top: 20px;
 }
 
 /* centered columns styles */

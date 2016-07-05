@@ -13,13 +13,15 @@
             factory.countryInfo = countryInfo;
             factory.neighbors = neighbors;
 
-            function countryInfo(country) {
+            return factory;
+
+            function countryInfo(countryCode) {
 
                 var url = baseUrl + "countryInfoJSON?username=" + userName;
                 var countryData;
 
                 //now check the country cache
-                countryData = getCountry(country);
+                countryData = getCountry(countryCode);
                 if (countryData) {
                     console.log("CACHE HIT", countryData);
                     // return the cached data as a resolve promise
@@ -29,8 +31,8 @@
                 }
 
                 // query string for a single country?
-                if (country)
-                    url += "&country=" + country;
+                if (countryCode)
+                    url += "&country=" + countryCode;
 
                 // get the data from geonames.org
                 return $http.get(url)
@@ -59,8 +61,8 @@
                         if (!keys.length)
                             return null;
 
-                        for (var i = 0; i < countries.length; i++)
-                            countries.push(countryCache.get(countries[i]));
+                        for (var i = 0; i < keys.length; i++)
+                            countries.push(countryCache.get(keys[i]));
 
                         return countries;
                     } else
@@ -81,7 +83,6 @@
                 }
 
             }
-
 
             // lookup the neighbors of a country
             function neighbors(countryCode) {
@@ -104,6 +105,5 @@
 
             }
 
-            return factory;
         }]);
 })();
