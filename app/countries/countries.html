@@ -1,7 +1,4 @@
-in country.html {{ vm.stuff }}
-<div ui-grid="{ data: vm.countriesData }" class="myGrid"></div>
-
-<table class="countries">
+<table class="countries table table-hover table-responsive">
     <thead>
     <tr>
         <th>Country</th>
@@ -14,14 +11,13 @@ in country.html {{ vm.stuff }}
     </thead>
 
     <tbody>
-        <tr ng-repeat="country in vm.countries" ng-click="vm.setSelectedCountry( country.countryCode );">
+        <tr ng-repeat="country in vm.countries | orderBy:'countryCode'" ng-click="vm.setSelectedCountry( country.isoAlpha3 );">
             <td>{{ country.countryName }}</td>
             <td>{{ country.countryCode }}</td>
             <td>{{ country.capital }}</td>
             <td>{{ country.areaInSqKm | number:0 }}</td>
             <td>{{ country.population | number:0 }}</td>
             <td>{{ country.continent }}</td>
-
         </tr>
     </tbody>
 </table>

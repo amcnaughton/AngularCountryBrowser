@@ -74,7 +74,7 @@
                 function putCountry(data) {
 
                     for (var i = 0; i < data.length; i++)
-                        countryCache.put(data[i].countryCode, data[i]);
+                        countryCache.put(data[i].isoAlpha3, data[i]);
 
                     if(data.length === 1)
                         return data[0];
