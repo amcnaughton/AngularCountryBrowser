@@ -3,107 +3,110 @@
 
     angular
         .module('app')
-        .factory('geonames', ['$http', 'CacheFactory', function ($http, CacheFactory) {
+        .factory('geonames', geonames);
 
-            var factory = {};
-            var baseUrl = "http://api.geonames.org/";
-            var userName = "amcnaughton";
-            var countryCache = CacheFactory('countryCache');
+    geonames.$inject = ['$http', 'CacheFactory'];
 
-            factory.countryInfo = countryInfo;
-            factory.neighbors = neighbors;
+    // interface to geonames.org
+    function geonames($http, CacheFactory) {
 
-            return factory;
+        var factory = {};
+        var baseUrl = "http://api.geonames.org/";
+        var userName = "amcnaughton";
+        var countryCache = CacheFactory('countryCache');
 
-            function countryInfo(countryCode) {
+        factory.countryInfo = countryInfo;
+        factory.neighbors = neighbors;
 
-                var url = baseUrl + "countryInfoJSON?username=" + userName;
-                var countryData;
+        return factory;
 
-                //now check the country cache
-                countryData = getCountry(countryCode);
-                if (countryData) {
-                    console.log("CACHE HIT", countryData);
-                    // return the cached data as a resolve promise
-                    return Promise.resolve({
-                        data: countryData
+        function countryInfo(countryCode) {
+
+            var url = baseUrl + "countryInfoJSON?username=" + userName;
+            var countryData;
+
+            //now check the country cache
+            countryData = getCountry(countryCode);
+            if (countryData) {
+
+                // return the cached data as a resolve promise
+                return Promise.resolve({
+                    data: countryData
+                });
+            }
+
+            // query string for a single country?
+            if (countryCode)
+                url += "&country=" + countryCode;
+
+            // get the data from geonames.org
+            return $http.get(url)
+                .then(function (res) {
+                        // success
+                        countryData = {
+                            data: putCountry(res.data.geonames)
+                        };
+                        return countryData;
+                    },
+                    function (httpError) {
+                        // http failure
+                        throw httpError.status + " : " + httpError.data;
                     });
-                }
 
-                // query string for a single country?
-                if (countryCode)
-                    url += "&country=" + countryCode;
+            // get one or all countries from the cache
+            function getCountry(countryCode) {
 
-                // get the data from geonames.org
-                return $http.get(url)
-                    .then(function (res) {
-                            // success
-                            countryData = {
-                                data: putCountry(res.data.geonames)
-                            };
-                            console.log("LOADED", countryData);
+                if (!countryCode) {
 
-                            return countryData;
-                        },
-                        function (httpError) {
-                            // http failure
-                            throw httpError.status + " : " + httpError.data;
-                        });
+                    var keys = countryCache.keys();
+                    var countries = [];
 
-                // get one or all countries from the cache
-                function getCountry(countryCode) {
+                    if (!keys.length)
+                        return null;
 
-                    if (!countryCode) {
+                    for (var i = 0; i < keys.length; i++)
+                        countries.push(countryCache.get(keys[i]));
 
-                        var keys = countryCache.keys();
-                        var countries = [];
-
-                        if (!keys.length)
-                            return null;
-
-                        for (var i = 0; i < keys.length; i++)
-                            countries.push(countryCache.get(keys[i]));
-
-                        return countries;
-                    } else
-                        return countryCache.get(countryCode);
-
-                }
-
-                // add one or more countries to the cache
-                function putCountry(data) {
-
-                    for (var i = 0; i < data.length; i++)
-                        countryCache.put(data[i].isoAlpha3, data[i]);
-
-                    if(data.length === 1)
-                        return data[0];
-                    else
-                     return data;
-                }
+                    return countries;
+                } else
+                    return countryCache.get(countryCode);
 
             }
 
-            // lookup the neighbors of a country
-            function neighbors(countryCode) {
+            // add one or more countries to the cache
+            function putCountry(data) {
 
-                var url = baseUrl + "neighboursJSON?username=" + userName + "&country=" + countryCode;
-                var neighborsData;
+                for (var i = 0; i < data.length; i++)
+                    countryCache.put(data[i].isoAlpha3, data[i]);
 
-                return $http.get(url)
-                    .then(function (res) {
-                            // success
-                            neighborsData = {
-                                data: res.data.geonames
-                            };
-                            return neighborsData;
-                        },
-                        function (httpError) {
-                            // http failure
-                            throw httpError.status + " : " + httpError.data;
-                        });
-
+                if (data.length === 1)
+                    return data[0];
+                else
+                    return data;
             }
 
-        }]);
+        }
+
+        // lookup the neighbors of a country
+        function neighbors(countryCode) {
+
+            var url = baseUrl + "neighboursJSON?username=" + userName + "&country=" + countryCode;
+            var neighborsData;
+
+            return $http.get(url)
+                .then(function (res) {
+                        // success
+                        neighborsData = {
+                            data: res.data.geonames
+                        };
+                        return neighborsData;
+                    },
+                    function (httpError) {
+                        // http failure
+                        throw httpError.status + " : " + httpError.data;
+                    });
+
+        }
+    }
+
 })();

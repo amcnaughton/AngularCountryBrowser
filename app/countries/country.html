@@ -1,7 +1,3 @@
-<pre>{{ vm.country | json }}</pre>
-<pre>{{ vm.neighbors }}</pre>
-
-
 <div class="row row-centered">
     <div class="col-xs-12 col-sm-4 col-centered">
 
@@ -38,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-if="vm.neighbors.length">
                 <label class="col-xs-4 control-label" for="neighbors">Neighbors</label>
                 <p class="col-xs-8">
                     <ul id="neighbors" class="list-inline">

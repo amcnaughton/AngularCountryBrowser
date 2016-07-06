@@ -3,21 +3,23 @@
 
     angular
         .module('app')
-        .controller('countryCtrl', ['geonames', '$routeParams', function (geonames, $routeParams) {
+        .controller('countryCtrl', countryCtrl);
 
-            var vm = this;
+    countryCtrl.$inject = ['geonames', '$routeParams'];
 
-            console.log($routeParams)
+    // country detail page
+    function countryCtrl(geonames, $routeParams) {
 
-            geonames.countryInfo($routeParams.countryCode)
-                .then(function (res) {
-                    vm.country = res.data;
-                });
-            ;
-            geonames.neighbors($routeParams.countryCode)
-                .then(function (res) {
-                    vm.neighbors = res.data;
-                })
+        var vm = this;
 
-        }]);
+        geonames.countryInfo($routeParams.countryCode)
+            .then(function (res) {
+                vm.country = res.data;
+            });
+
+        geonames.neighbors($routeParams.countryCode)
+            .then(function (res) {
+                vm.neighbors = res.data;
+            })
+    }
 })();

@@ -9,7 +9,7 @@
                 responsive: true,
                 done: function(datamap) {
                     datamap.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-                        console.log(geography.id);
+                        setSelectedCountry(geography.id);
                     });
                 }
             });
@@ -19,7 +19,7 @@
             });
         </script>
 
-        <p><a class="btn btn-primary btn-lg" href="#/new-meal">Enter a Meal!</a></p>
+        <a class="btn btn-primary" href="#/countries">Browse Countries</a>
 
     </div>
 </div>

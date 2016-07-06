@@ -7,6 +7,7 @@
             $routeProvider
                 .when('/', {
                     templateUrl: 'home/home.html',
+                    controller: 'homeCtrl as vm'
                 })
                 .when('/countries', {
                     templateUrl: 'countries/countries.html',
@@ -16,9 +17,9 @@
                     templateUrl: 'countries/country.html',
                     controller: 'countryCtrl as vm'
                 })
-                //.otherwise({
-                //    redirectTo: '/'
-                //});
+                .otherwise({
+                    redirectTo: '/'
+                });
 
         }]);
 })();

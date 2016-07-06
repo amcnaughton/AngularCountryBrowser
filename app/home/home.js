@@ -3,21 +3,21 @@
 
     angular
         .module('app')
-        .controller('countriesCtrl', countriesCtrl);
+        .controller('homeCtrl', homeCtrl);
 
-    countriesCtrl.$inject = ['geonames', 'url'];
+    homeCtrl.$inject = ['$window', 'geonames', 'url'];
 
-    // list all countries
-    function countriesCtrl(geonames, url) {
+    function homeCtrl($window, geonames, url) {
 
         var vm = this;
 
+        // populate cache
         geonames.countryInfo()
             .then(function (res) {
                 vm.countries = res.data;
             });
 
         // fires when user selects a country
-        vm.setSelectedCountry = url.viewCountry;
+        $window.setSelectedCountry = url.viewCountry;
     }
 })();
