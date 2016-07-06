@@ -17,6 +17,7 @@
 
         factory.countryInfo = countryInfo;
         factory.neighbors = neighbors;
+        factory.population = population;
 
         return factory;
 
@@ -106,6 +107,26 @@
                         throw httpError.status + " : " + httpError.data;
                     });
 
+        }
+
+        // lookup the neighbors of a country
+        function population(countryCode, place) {
+
+            var url = baseUrl + "searchJSON?username=" + userName + "&name_equals=" + place + "&country=" + countryCode + "&maxRows=1";
+            var populationData;
+
+            return $http.get(url)
+                .then(function (res) {
+                        // success
+                        populationData = {
+                            data: res.data.geonames[0].population
+                        };
+                        return populationData;
+                    },
+                    function (httpError) {
+                        // http failure
+                        throw httpError.status + " : " + httpError.data;
+                    });
         }
     }
 

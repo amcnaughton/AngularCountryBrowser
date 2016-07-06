@@ -14,7 +14,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-xs-4 control-label" for="area">Population</label>
+                <label class="col-xs-4 control-label" for="area">Area</label>
                 <div class="col-xs-8">
                     <p id="area" class="form-control-static">{{ vm.country.areaInSqKm | number:0 }} square km</p>
                 </div>
@@ -31,6 +31,13 @@
                 <label class="col-xs-4 control-label" for="capital">Capital</label>
                 <div class="col-xs-8">
                     <p id="capital" class="form-control-static">{{ vm.country.capital }}</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-4 control-label" for="capitalPopulation">Population of Capital</label>
+                <div class="col-xs-8">
+                    <p id="capitalPopulation" class="form-control-static">{{ vm.country.capitalPopulation | number:0 }}</p>
                 </div>
             </div>
 
