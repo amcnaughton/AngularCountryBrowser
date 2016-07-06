@@ -30,7 +30,7 @@
             countryData = getCountry(countryCode);
             if (countryData) {
 
-                // return the cached data as a resolve promise
+                // return the cached data as a resolved promise
                 return Promise.resolve({
                     data: countryData
                 });
