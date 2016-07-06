@@ -1,5 +1,5 @@
 <div class="row row-centered">
-    <div class="col-xs-12 col-sm-4 col-centered">
+    <div class="col-xs-12 col-sm-6 col-centered well">
 
 
         <div class="form-horizontal">
@@ -44,12 +44,11 @@
             <div class="form-group" ng-if="vm.neighbors.length">
                 <label class="col-xs-4 control-label" for="neighbors">Neighbors</label>
                 <p class="col-xs-8">
-                    <ul id="neighbors" class="list-inline">
-                        <li ng-repeat="neighbor in vm.neighbors | limitTo: 3">
-                            <a ng-href="#/countries/{{ neighbor.countryCode }}">{{ neighbor.countryName }}</a>
-                        </li>
-                    </ul>
-                </p>
+                <ul id="neighbors" class="list-inline">
+                    <li ng-repeat="neighbor in vm.neighbors | limitTo: 3">
+                        <a ng-href="#/countries/{{ neighbor.countryCode }}">{{ neighbor.countryName }}</a>
+                    </li>
+                </ul>
             </div>
 
         </div>
@@ -59,10 +58,6 @@
             <img class="map" ng-src="http://www.geonames.org/img/country/250/{{ vm.country.countryCode | uppercase }}.png"/>
         </div>
 
-        <div class="country-buttons text-center">
-            <a class="btn btn-primary" ng-href="#/">Home</a>
-            <a class="btn btn-default" ng-href="#/countries">Browse Countries</a>
-        </div>
     </div>
 </div>
 

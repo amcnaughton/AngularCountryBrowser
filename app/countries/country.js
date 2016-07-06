@@ -38,7 +38,7 @@
 
         $q.all([countryPromise, neighborsPromise])
             .catch(function (error) {
-                alert("Error loading page details");
+                alert("Error loading details of country");
             });
     }
 })();

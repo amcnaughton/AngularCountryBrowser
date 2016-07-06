@@ -1,23 +1,28 @@
-<table class="countries table table-hover table-responsive">
-    <thead>
-    <tr>
-        <th>Country</th>
-        <th>Code</th>
-        <th>Capital</th>
-        <th>Area in Km2</th>
-        <th>Population</th>
-        <th>Continent</th>
-    </tr>
-    </thead>
+<div class="row row-centered">
+    <div class="col-xs-12 col-sm-8 col-centered">
 
-    <tbody>
-        <tr ng-repeat="country in vm.countries | orderBy:'countryCode'" ng-click="vm.setSelectedCountry( country.isoAlpha3 );">
-            <td>{{ country.countryName }}</td>
-            <td>{{ country.countryCode }}</td>
-            <td>{{ country.capital }}</td>
-            <td>{{ country.areaInSqKm | number:0 }}</td>
-            <td>{{ country.population | number:0 }}</td>
-            <td>{{ country.continent }}</td>
-        </tr>
-    </tbody>
-</table>
+        <table class="countries table table-hover table-responsive well">
+            <thead>
+            <tr>
+                <th>Country</th>
+                <th>Code</th>
+                <th>Capital</th>
+                <th>Area in Km2</th>
+                <th>Population</th>
+                <th>Continent</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="country in vm.countries | orderBy:'countryCode'" ng-click="vm.setSelectedCountry( country.isoAlpha3 );">
+                <td>{{ country.countryName }}</td>
+                <td>{{ country.countryCode }}</td>
+                <td>{{ country.capital }}</td>
+                <td>{{ country.areaInSqKm | number:0 }}</td>
+                <td>{{ country.population | number:0 }}</td>
+                <td>{{ country.continent }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

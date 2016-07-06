@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <title>Countries & Capitals</title>
 
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+
     <link type="text/css" rel="stylesheet" href="css/style.css">
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -16,19 +20,24 @@
 
 <body>
 
-<div class="container-fluid">
-    <h1 class="text-center">Countries & Capitals</h1>
+<div class="wrap">
+    <div class="container-fluid">
 
-    <ul class="list-inline text-center">
-        <li><a ng-href="#/">Home</a></li>
-        <li><a ng-href="#/countries">Browse Countries</a></li>
-    </ul>
+        <h1 class="text-center">Countries & Capitals</h1>
 
-    <div class="animate-view-container">
-        <div ng-view class="animate-view"></div>
+        <ul class="list-inline text-center">
+            <li><a class="btn btn-default btn-transparent" ng-href="#/">Home</a></li>
+            <li><a class="btn btn-default btn-transparent" ng-href="#/countries">Browse Countries</a></li>
+        </ul>
+
+        <div class="animate-view-container">
+            <div ng-view class="animate-view"></div>
+        </div>
+
     </div>
-
 </div>
+
+<div class="footer navbar-fixed-bottom text-center">Created by Allan McNaughton using AngularJS, D3, DataMaps, and Bootstrap</div>
 
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
