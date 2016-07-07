@@ -1,11 +1,7 @@
-# Waitstaff application for Thinkful AngularJS course
+# Countries and capitals app for Thinkful AngularJS course
 
->An AngularJS & Bootstrap tool that helps wait staff at restaurants compute meal costs and track their tips over the course of a shift. 
+>An AngularJS, D3, DataMaps, and Bootstrap app to browse data from geonames.org
 
-Working app at http://amcnaughton.github.io/waitstaff/
-
-## Input page mockup
-![Mockup](https://raw.githubusercontent.com/amcnaughton/waitstaff/master/images/waitstaff-tool.png)
-
+Working app at http://amcnaughton.github.io/countries/
 
 Allan

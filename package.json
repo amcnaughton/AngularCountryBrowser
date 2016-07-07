@@ -1,0 +1,22 @@
+{
+  "name": "countries",
+  "version": "1.0.0",
+  "description": ">An AngularJS, D3, DataMaps, and Bootstrap app to browse data from geonames.org.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-connect": "^4.1.0",
+    "gulp-minify": "0.0.12",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-usemin": "^0.3.23"
+  }
+}
