@@ -7,17 +7,23 @@
 
     homeCtrl.$inject = ['$window', 'geonames', 'url'];
 
+    // dispaly the world map
     function homeCtrl($window, geonames, url) {
 
         var vm = this;
 
-        // populate cache
-        geonames.countryInfo()
-            .then(function (res) {
-                vm.countries = res.data;
-            });
+        activate();
 
-        // fires when user selects a country
-        $window.setSelectedCountry = url.viewCountry;
+        function activate() {
+
+            // populate cache
+            geonames.countryInfo()
+                .then(function (res) {
+                    vm.countries = res.data;
+                });
+
+            // fires when user selects a country
+            $window.setSelectedCountry = url.viewCountry;
+        }
     }
 })();

@@ -27,6 +27,7 @@
     <script src="routes.js"></script>
     <script src="url.js"></script>
     <script src="geonames.js"></script>
+    <script src="loading.js"></script>
     <script src="home/home.js"></script>
     <script src="countries/countries.js"></script>
     <script src="countries/country.js"></script>
@@ -35,6 +36,8 @@
 </head>
 
 <body>
+
+<div id="loading" ng-show="loading"><div id="spinner"></div></div>
 
 <div class="wrap">
     <div class="container-fluid">

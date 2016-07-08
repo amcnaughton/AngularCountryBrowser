@@ -14,7 +14,7 @@
             </thead>
 
             <tbody>
-            <tr ng-repeat="country in vm.countries | orderBy:'countryCode'" ng-click="vm.setSelectedCountry( country.isoAlpha3 );">
+            <tr ng-repeat="country in vm.countries | orderBy:'countryCode'" ng-click="vm.setSelectedCountry( country.isoAlpha3 );" ng-init="$last && vm.loading.finish()">
                 <td>{{ country.countryName }}</td>
                 <td>{{ country.countryCode }}</td>
                 <td>{{ country.capital }}</td>
