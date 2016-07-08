@@ -2,7 +2,7 @@
 
 >An AngularJS, D3, DataMaps, and Bootstrap app to browse data from geonames.org
 
-Working app at http://amcnaughton.github.io/countries/
+Working app at http://mysrdev.xyz/angular/countries/#/
 
 ## Screenshot
 ![Screenshot](https://raw.githubusercontent.com/amcnaughton/countries/master/app/images/screenshot.jpg)
