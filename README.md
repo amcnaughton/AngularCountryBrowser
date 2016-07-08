@@ -4,4 +4,7 @@
 
 Working app at http://amcnaughton.github.io/countries/
 
+## Screenshot
+![Screenshot](https://raw.githubusercontent.com/amcnaughton/countries/master/app/images/screenshot.jpg)
+
 Allan
